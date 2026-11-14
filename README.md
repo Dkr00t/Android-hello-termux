@@ -1,69 +1,178 @@
-README
 🏴‍☠️ Termux-Hello
 
-Android Java Project — Sunday Hacker Lab
+Build Android APKs directly from Termux — no Android Studio, no computer, just your Android device.
 
-Termux-Hello is a personal Android application developed in Java, using Termux as a development and testing environment.
+Termux-Hello is a lightweight Android project built and compiled entirely from a mobile environment using Termux.
 
-The project explores Android application development, background services, system APIs and local laboratory experiments.
+The project demonstrates how to manually build an Android application using command-line tools, without Gradle or Android Studio.
 
-🛠️ Technologies
+It includes a Java-based Android activity and a background service, with XML resources and a custom APK build pipeline.
 
-Java
-Android SDK
-Android Framework
-XML
-Shell scripting
-Termux
+✨ Project Overview
+
+Termux-Hello is designed to explore Android development from the command line.
+
+The project uses a manual build process to handle:
+
+- Android resource compilation
+- Resource linking and "R.java" generation
+- Java source compilation
+- DEX conversion
+- APK packaging
+- APK signing and verification
+
+🛠️ Requirements
+
+- An Android device
+- "Termux" (https://f-droid.org/en/packages/com.termux/)
+- OpenJDK installed in Termux
+- Android SDK platform JAR ("android.jar")
+- Android build tools:
+  - "aapt2"
+  - "dx"
+  - "zip"
+  - "apksigner"
+
+⚙️ Build Environment
+
+The project uses the following paths:
+
+Component| Path
+Android SDK JAR| "~/android-sdk/android.jar"
+Java source| "src/com/example/hello/"
+Resources| "res/"
+Build directory| "build/"
+Output APK| "build/apk/app.apk"
+Final APK destination| "~/site/app.apk"
+
+🚀 Building the APK
+
+Run the build script from Termux:
+
+bash mybuildapk.sh
+
+The script automatically:
+
+1. Removes the previous build directory.
+2. Compiles Android resources using "aapt2".
+3. Links resources and generates "R.java".
+4. Compiles Java source files using "javac".
+5. Converts compiled classes into DEX using "dx".
+6. Packages the DEX file into the APK.
+7. Signs the APK using "apksigner".
+8. Verifies the APK signature.
+9. Copies the final APK into "~/site/".
+
+When the process completes, the APK is available at:
+
+~/site/app.apk
+
+🔧 Build Pipeline
+
+The project follows a manual Android build process:
+
+res/
+  │
+  ▼
+aapt2 compile
+  │
+  ▼
+Compiled resources (.flat)
+  │
+  ▼
+aapt2 link
+  │
+  ├── Android resources
+  └── R.java
+        │
+        ▼
+     javac
+        │
+        ▼
+    .class files
+        │
+        ▼
+       dx
+        │
+        ▼
+   classes.dex
+        │
+        ▼
+  APK packaging
+        │
+        ▼
+    apksigner
+        │
+        ▼
+   Signed APK
+
 📁 Project Structure
 
-📂 Source Code
+Termux-Hello/
+│
+├── src/
+│   └── com/
+│       └── example/
+│           └── hello/
+│               ├── MainActivity.java
+│               └── ShellService.java
+│
+├── res/
+│   ├── drawable/
+│   │   └── logo.png
+│   ├── layout/
+│   │   └── activity_main.xml
+│   └── values/
+│       └── strings.xml
+│
+├── AndroidManifest.xml
+├── .gitignore
+└── README.md
 
-"src/com/example/hello/"
-"MainActivity.java" — Main application activity.
-"ShellService.java" — Android service.
-📂 Resources
+📦 Main Components
 
-"res/drawable/"
-"logo.png" — Application logo.
-"res/layout/"
-"activity_main.xml" — User interface layout.
-"res/values/"
-"strings.xml" — Application strings.
-📄 Configuration
+File| Description
+"MainActivity.java"| Main Android application activity
+"ShellService.java"| Android service component
+"AndroidManifest.xml"| Application configuration
+"activity_main.xml"| Main user interface
+"strings.xml"| Application string resources
+"logo.png"| Application logo
 
-"AndroidManifest.xml" — Application configuration.
+⚠️ Technical Limitations
 
-"README.md" — Project documentation.
+This project uses a minimal manual build environment.
 
-⚙️ Main Components
+- Java 8 source and bytecode compatibility.
+- Uses "dx" for DEX conversion.
+- No Gradle or Maven dependency management.
+- No automatic dependency resolution.
+- No AndroidX or Jetpack integration.
+- XML layouts instead of Jetpack Compose.
+- No automatic ProGuard/R8 code shrinking or obfuscation.
 
-Java
+🔐 Signing
 
-MainActivity.java — Main application activity and user interface logic.
-ShellService.java — Android service component.
-Resources
+The APK is signed using a local debug keystore:
 
-activity_main.xml — Application interface.
-strings.xml — Application string resources.
-logo.png — Application logo.
-🎯 Project Goals
+~/.debug.keystore
 
-Explore Android development with Java.
-Understand Android services and application components.
-Experiment with Android APIs.
-Develop and test features in a controlled environment.
-Improve Java and Linux command-line skills.
-🔬 Development Environment
+This signing configuration is intended for development and testing, not production distribution.
 
-Android device
-Termux
-Java / Android SDK
-Local testing laboratory
-👨‍💻 Author
+🎯 Project Purpose
 
-D.K.
+Termux-Hello demonstrates that Android development is not limited to a desktop computer.
 
-From the butcher's knife to the command line.
+With Termux and the right command-line tools, it is possible to build, package and sign an Android application directly from a smartphone.
 
-🏴‍☠️ Sunday Hacker Lab
+No Android Studio. No Gradle. Just Termux, Java and a little bit of determination.
+
+---
+
+📜 Copyright
+
+Copyright © 2026 D.K.
+
+All rights reserved.
+
+This repository is private. No permission is granted to copy, modify, redistribute or reuse the source code without the author's prior written authorization.
