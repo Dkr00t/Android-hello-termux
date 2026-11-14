@@ -106,7 +106,7 @@ The APK is built through the following stages:
                     v
                 Signed APK
 
-📁 Project Structure
+📁 Project Structure 
 
 Termux-Hello/
 │
@@ -120,16 +120,15 @@ Termux-Hello/
 ├── res/
 │   ├── drawable/
 │   │   └── logo.png
-│   │
 │   ├── layout/
 │   │   └── activity_main.xml
-│   │
 │   └── values/
 │       └── strings.xml
 │
 ├── AndroidManifest.xml
 ├── .gitignore
 └── README.md
+
 
 📦 Main Components
 
