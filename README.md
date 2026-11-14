@@ -6,11 +6,11 @@ Termux-Hello is a lightweight Android project built and compiled entirely from a
 
 The project demonstrates how to manually build an Android application using command-line tools, without Gradle or Android Studio.
 
-It includes a Java-based Android activity and a background service, with XML resources and a custom APK build pipeline.
+It includes a Java-based Android activity, an Android service, XML resources and a custom APK build pipeline.
 
 ✨ Project Overview
 
-Termux-Hello is designed to explore Android development from the command line.
+Termux-Hello explores Android development from the command line.
 
 The project uses a manual build process to handle:
 
@@ -37,13 +37,12 @@ The project uses a manual build process to handle:
 
 The project uses the following paths:
 
-Component| Path
-Android SDK JAR| "~/android-sdk/android.jar"
-Java source| "src/com/example/hello/"
-Resources| "res/"
-Build directory| "build/"
-Output APK| "build/apk/app.apk"
-Final APK destination| "~/site/app.apk"
+- Android SDK JAR: "~/android-sdk/android.jar"
+- Java source: "src/com/example/hello/"
+- Resources: "res/"
+- Build directory: "build/"
+- Output APK: "build/apk/app.apk"
+- Final APK destination: "~/site/app.apk"
 
 🚀 Building the APK
 
@@ -51,9 +50,9 @@ Run the build script from Termux:
 
 bash mybuildapk.sh
 
-The script automatically:
+The script automatically performs the following operations:
 
-1. Removes the previous build directory.
+1. Cleans the previous build directory.
 2. Compiles Android resources using "aapt2".
 3. Links resources and generates "R.java".
 4. Compiles Java source files using "javac".
@@ -72,72 +71,74 @@ When the process completes, the APK is available at:
 The project follows a manual Android build process:
 
 res/
-  │
-  ▼
+  |
+  v
 aapt2 compile
-  │
-  ▼
+  |
+  v
 Compiled resources (.flat)
-  │
-  ▼
+  |
+  v
 aapt2 link
-  │
-  ├── Android resources
-  └── R.java
-        │
-        ▼
-     javac
-        │
-        ▼
-    .class files
-        │
-        ▼
-       dx
-        │
-        ▼
-   classes.dex
-        │
-        ▼
-  APK packaging
-        │
-        ▼
-    apksigner
-        │
-        ▼
-   Signed APK
+  |
+  +---- Android resources
+  |
+  +---- R.java
+          |
+          v
+        javac
+          |
+          v
+      .class files
+          |
+          v
+          dx
+          |
+          v
+      classes.dex
+          |
+          v
+    APK packaging
+          |
+          v
+       apksigner
+          |
+          v
+      Signed APK
 
 📁 Project Structure
 
 Termux-Hello/
-│
-├── src/
-│   └── com/
-│       └── example/
-│           └── hello/
-│               ├── MainActivity.java
-│               └── ShellService.java
-│
-├── res/
-│   ├── drawable/
-│   │   └── logo.png
-│   ├── layout/
-│   │   └── activity_main.xml
-│   └── values/
-│       └── strings.xml
-│
-├── AndroidManifest.xml
-├── .gitignore
-└── README.md
+|
++-- src/
+|   +-- com/
+|       +-- example/
+|           +-- hello/
+|               +-- MainActivity.java
+|               +-- ShellService.java
+|
++-- res/
+|   +-- drawable/
+|   |   +-- logo.png
+|   |
+|   +-- layout/
+|   |   +-- activity_main.xml
+|   |
+|   +-- values/
+|       +-- strings.xml
+|
++-- AndroidManifest.xml
++-- .gitignore
++-- README.md
 
 📦 Main Components
 
-File| Description
-"MainActivity.java"| Main Android application activity
-"ShellService.java"| Android service component
-"AndroidManifest.xml"| Application configuration
-"activity_main.xml"| Main user interface
-"strings.xml"| Application string resources
-"logo.png"| Application logo
+- "MainActivity.java" — Main Android application activity.
+- "ShellService.java" — Android service component.
+- "AndroidManifest.xml" — Application configuration.
+- "activity_main.xml" — Main user interface.
+- "strings.xml" — Application string resources.
+- "logo.png" — Application logo.
 
 ⚠️ Technical Limitations
 
@@ -151,13 +152,15 @@ This project uses a minimal manual build environment.
 - XML layouts instead of Jetpack Compose.
 - No automatic ProGuard/R8 code shrinking or obfuscation.
 
-🔐 Signing
+🔐 APK Signing
 
 The APK is signed using a local debug keystore:
 
 ~/.debug.keystore
 
 This signing configuration is intended for development and testing, not production distribution.
+
+The keystore should remain private and should never be committed to the repository.
 
 🎯 Project Purpose
 
@@ -166,8 +169,6 @@ Termux-Hello demonstrates that Android development is not limited to a desktop c
 With Termux and the right command-line tools, it is possible to build, package and sign an Android application directly from a smartphone.
 
 No Android Studio. No Gradle. Just Termux, Java and a little bit of determination.
-
----
 
 📜 Copyright
 
