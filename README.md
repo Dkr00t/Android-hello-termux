@@ -68,68 +68,68 @@ When the process completes, the APK is available at:
 
 🔧 Build Pipeline
 
-The project follows a manual Android build process:
+The APK is built through the following stages:
 
-res/
-  |
-  v
-aapt2 compile
-  |
-  v
-Compiled resources (.flat)
-  |
-  v
-aapt2 link
-  |
-  +---- Android resources
-  |
-  +---- R.java
-          |
-          v
-        javac
-          |
-          v
-      .class files
-          |
-          v
-          dx
-          |
-          v
-      classes.dex
-          |
-          v
-    APK packaging
-          |
-          v
-       apksigner
-          |
-          v
-      Signed APK
+[ Android Resources ]
+         |
+         v
+   aapt2 compile
+         |
+         v
+  Compiled .flat files
+         |
+         v
+     aapt2 link
+         |
+         +------> Android resources
+         |
+         +------> R.java
+                    |
+                    v
+                  javac
+                    |
+                    v
+                .class files
+                    |
+                    v
+                    dx
+                    |
+                    v
+                classes.dex
+                    |
+                    v
+              APK packaging
+                    |
+                    v
+                 apksigner
+                    |
+                    v
+                Signed APK
 
 📁 Project Structure
 
 Termux-Hello/
-|
-+-- src/
-|   +-- com/
-|       +-- example/
-|           +-- hello/
-|               +-- MainActivity.java
-|               +-- ShellService.java
-|
-+-- res/
-|   +-- drawable/
-|   |   +-- logo.png
-|   |
-|   +-- layout/
-|   |   +-- activity_main.xml
-|   |
-|   +-- values/
-|       +-- strings.xml
-|
-+-- AndroidManifest.xml
-+-- .gitignore
-+-- README.md
+│
+├── src/
+│   └── com/
+│       └── example/
+│           └── hello/
+│               ├── MainActivity.java
+│               └── ShellService.java
+│
+├── res/
+│   ├── drawable/
+│   │   └── logo.png
+│   │
+│   ├── layout/
+│   │   └── activity_main.xml
+│   │
+│   └── values/
+│       └── strings.xml
+│
+├── AndroidManifest.xml
+├── .gitignore
+└── README.md
 
 📦 Main Components
 
